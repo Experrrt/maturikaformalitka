@@ -1,4 +1,5 @@
-import PagePriklady from './PagePriklady'
+import PagePriklady from './PagePriklady';
+import './css/app.css';
 
 function App() {
   return (
@@ -7,7 +8,7 @@ function App() {
         <PagePriklady />
       </header>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

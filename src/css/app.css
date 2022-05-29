@@ -1,0 +1,9 @@
+.App {
+  background-color: #dedede;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.2) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+header {
+  height: 100%;
+}
