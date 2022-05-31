@@ -7,7 +7,7 @@
  */
 import './css/PagePriklady.css';
 import {useEffect, useRef, useState} from 'react';
-import {useSpring, animated} from 'react-spring';
+import {useSpring, animated, config} from 'react-spring';
 
 /* xml-file, axios, xmlparser */
 import XMLData from './priklady/priklady.xml';
@@ -79,11 +79,11 @@ function PagePriklady() {
       setAnimTaskCont.start({transform: 'scale(1.00)'});
     } else {
       setAnswMessage({correct: false, shouldDisplay: true});
-      setAnimTaskCont.start({boxShadow: '0px 0px 9px 3px rgba(255, 0, 0, 0.5)'});
+      // setAnimTaskCont.start({boxShadow: '0px 0px 9px 3px rgba(255, 0, 0, 0.5)'});
 
       await delay(1000);
 
-      setAnimTaskCont.start({boxShadow: '0px 0px 0px 5px rgba(255, 0, 0, 0.0)'});
+      // setAnimTaskCont.start({boxShadow: '0px 0px 0px 5px rgba(255, 0, 0, 0.0)'});
     }
     setAnswMessage({correct: false, shouldDisplay: false});
   };
@@ -95,17 +95,20 @@ function PagePriklady() {
   const [animTaskCont, setAnimTaskCont] = useSpring(() => ({
     transform: 'scale(1.00)',
     config: {mass: 1, tension: 170, friction: 24},
-    boxShadow: '0px 0px 0px 5px rgba(255, 0, 0, 0.0)',
-    onResolve: () => {
-      console.log('kokotko');
-    },
   }));
 
   const {x: animCheckMark} = useSpring({
     from: {x: 0},
     x: answMessage.correct & answMessage.shouldDisplay ? 1 : 0,
-    config: {duration: 1000},
     delay: 460,
+    config: {duration: 1000},
+  });
+
+  const {x: animWrongAnsw} = useSpring({
+    from: {x: 0},
+    x: !answMessage.correct & answMessage.shouldDisplay ? 1 : 0,
+    config: {duration: 1000},
+    reset: true,
   });
 
   const [animFormInput, setAnimFormInput] = useSpring(() => ({
@@ -126,9 +129,31 @@ function PagePriklady() {
         <h1 className="priklady-task-number">Príklad {parseInt(problemsList.current[taskNumber].attributes.id)}</h1>
         <div className="priklady-center-check">
           <animated.div
+            style={
+              !answMessage.correct & answMessage.shouldDisplay
+                ? {
+                    scale: animWrongAnsw.to({
+                      range: [0, 0.06, 0.12, 0.24, 0.55, 0.65, 0.75, 0.9, 1],
+                      output: [1, 1.06, 0.95, 1, 1, 1, 1, 1, 1],
+                    }),
+                    boxShadow: animWrongAnsw
+                      .to({
+                        range: [0, 0.05, 0.1, 0.15, 0.2, 0.65, 0.75, 0.85, 0.95, 1],
+                        output: [0, 2, 5, 7, 9, 9, 7, 5, 2, 0],
+                      })
+                      .to((x) => `0px 0px ${x}px ${x / 3}px rgba(255, 0, 0, 0.5)`),
+                  }
+                : animTaskCont
+            }
+            className="priklady-task-cont"
+          >
+            <img className="priklady-task-img" src={imageList.current[taskNumber + 1 + '.png']} alt="Zadanie úlohy" />
+          </animated.div>
+          <animated.div
             className="checkmark-cont"
             style={{
               scale: animCheckMark.to({
+                // extrapolate: 'clamp',
                 range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 0.9, 1],
                 output: [1, 0.77, 0.7, 1.3, 0.7, 1.3, 1.23, 1.1, 1],
               }),
@@ -139,9 +164,6 @@ function PagePriklady() {
               <path className="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
             </svg>
           </animated.div>
-          <animated.div style={animTaskCont} className="priklady-task-cont">
-            <img className="priklady-task-img" src={imageList.current[taskNumber + 1 + '.png']} alt="Zadanie úlohy" />
-          </animated.div>
         </div>
         <div className="ansert-cont">
           <animated.div className="priklady-answer-type" style={animFormABC}>
@@ -151,6 +173,7 @@ function PagePriklady() {
               name="name"
               value={input}
               autoComplete="off"
+              placeholder="Odpoveď"
               onChange={(e) => {
                 setInput(e.target.value);
               }}
@@ -167,7 +190,7 @@ function PagePriklady() {
               Potvrdit
             </button>
           </animated.div>
-          <animated.div style={animFormInput}>
+          <animated.div className="priklady-answer-ABCD" style={animFormInput}>
             <ul className="priklady-ABCDlist">
               <li id="A" onClick={handleListClick}>
                 A
