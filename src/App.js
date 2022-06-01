@@ -1,13 +1,17 @@
-import PagePriklady from './PagePriklady';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+
+import PagePriklady from './komponenty/PagePriklady';
+import Header from './komponenty/Header';
 import './css/app.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <Router>
+      <div className="App">
+        <Header />
         <PagePriklady />
-      </header>
-    </div>
+      </div>
+    </Router>
   );
 }
 

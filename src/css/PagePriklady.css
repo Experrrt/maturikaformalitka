@@ -10,7 +10,7 @@
   display: grid;
   grid-template-columns: minmax(400px, 1800px);
   grid-template-rows:
-    minmax(15px, 5%) minmax(100px, 65%)
+    minmax(15px, 6%) minmax(100px, 64%)
     minmax(100px, 30%);
 }
 
@@ -20,7 +20,7 @@
   height: fit-content;
   align-self: center;
   font-weight: 500;
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
 }
 
 .priklady-center-check {
@@ -39,6 +39,7 @@
   z-index: 1;
   overflow: hidden;
   /* box-shadow: 0px 0px 30px 5px rgba(255, 0, 0, 0.5); */
+  box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.1);
 
   transform: scale(1);
 }

@@ -5,12 +5,12 @@
  *	Logika samotnych prikladov
  *
  */
-import './css/PagePriklady.css';
+import '../css/PagePriklady.css';
 import {useEffect, useRef, useState} from 'react';
 import {useSpring, animated, config} from 'react-spring';
 
 /* xml-file, axios, xmlparser */
-import XMLData from './priklady/priklady.xml';
+import XMLData from '../priklady/priklady.xml';
 import axios from 'axios';
 import XMLParser from 'react-xml-parser';
 
@@ -31,7 +31,7 @@ function PagePriklady() {
       .then((response) => {
         rawXmlData = response.data;
         parseXmlData(rawXmlData);
-        imageList.current = importAllImages(require.context('./priklady/zadania', false, /.png/));
+        imageList.current = importAllImages(require.context('../priklady/zadania', false, /.png/));
         genNewTask();
       });
   }, []);
@@ -139,9 +139,9 @@ function PagePriklady() {
                     boxShadow: animWrongAnsw
                       .to({
                         range: [0, 0.05, 0.1, 0.15, 0.2, 0.65, 0.75, 0.85, 0.95, 1],
-                        output: [0, 2, 5, 7, 9, 9, 7, 5, 2, 0],
+                        output: [0, 70, 140, 210, 255, 255, 210, 140, 70, 0],
                       })
-                      .to((x) => `0px 0px ${x}px ${x / 3}px rgba(255, 0, 0, 0.5)`),
+                      .to((x) => `0px ${10 - x / 30}px 20px 5px rgba(${x}, 0, 0, ${0.1 + x / 1000})`),
                   }
                 : animTaskCont
             }
