@@ -3,6 +3,33 @@
   padding: 0;
   box-sizing: border-box;
   font-weight: 500;
+  --header-size: 64px;
+  --header-font: 0.8rem;
+  --header-height: 32px;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: 500;
+    --header-size: 64px;
+    --header-font: 0.8rem;
+    --header-height: 32px;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: 500;
+    --header-size: 80px;
+    --header-font: 0.95rem;
+    --header-height: 40px;
+  }
 }
 
 .navbar-main-container {
@@ -11,14 +38,14 @@
   overflow: hidden;
   margin-top: 1rem;
   margin-right: 2rem;
-  min-height: 3.8rem;
-  width: 72px;
+  min-height: var(--header-size);
+  width: var(--header-size);
   position: absolute;
   right: 0;
   display: flex;
   flex-direction: column;
   z-index: 10;
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
   align-items: center;
 }
 
@@ -41,8 +68,8 @@
 
 .nav-arrow-cont {
   padding: 15px 5px 15px 5px;
-  height: 72px;
-  width: 72px;
+  height: var(--header-size);
+  width: var(--header-size);
   position: relative;
   top: 0px;
   animation: updown 5s infinite ease-in-out;
@@ -91,7 +118,7 @@
 .nav-links .link {
   position: relative;
   width: 100%;
-  height: 40px;
+  height: var(--header-height); /*                                */
   padding: inherit;
   color: rgb(175, 175, 175);
   box-shadow: inset 0px 0 0 0 #51a3b8;
@@ -113,7 +140,7 @@
 }
 .nav-links h6 {
   height: 12px;
-  font-size: 0.95rem;
+  font-size: var(--header-font); /*                                */
   font-weight: bold;
   position: relative;
   cursor: pointer;
