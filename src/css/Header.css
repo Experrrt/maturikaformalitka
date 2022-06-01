@@ -7,17 +7,19 @@
 
 .navbar-main-container {
   background-color: rgb(65, 65, 65, 0.8);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(4px);
   overflow: hidden;
   margin-top: 1rem;
   margin-right: 2rem;
   min-height: 3.8rem;
+  width: 72px;
   position: absolute;
   right: 0;
   display: flex;
   flex-direction: column;
   z-index: 10;
-  font-family: 'Jost', sans-serif;
+  font-family: "Jost", sans-serif;
+  align-items: center;
 }
 
 .profile-pic-nav {
@@ -39,8 +41,8 @@
 
 .nav-arrow-cont {
   padding: 15px 5px 15px 5px;
-  height: 64px;
-  width: 64px;
+  height: 72px;
+  width: 72px;
   position: relative;
   top: 0px;
   animation: updown 5s infinite ease-in-out;
@@ -79,16 +81,17 @@
 .nav-links {
   display: flex;
   flex-direction: column;
-  padding-top: 1rem;
+  padding-top: 1.7rem;
   gap: 2rem;
   position: relative;
   flex-grow: 1;
   border-top: 2px solid grey;
+  width: 100%;
 }
 .nav-links .link {
   position: relative;
-  width: 64px;
-  height: 34px;
+  width: 100%;
+  height: 40px;
   padding: inherit;
   color: rgb(175, 175, 175);
   box-shadow: inset 0px 0 0 0 #51a3b8;
@@ -110,8 +113,8 @@
 }
 .nav-links h6 {
   height: 12px;
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 0.95rem;
+  font-weight: bold;
   position: relative;
   cursor: pointer;
   user-select: none;
@@ -123,6 +126,8 @@
   display: flex;
   flex-direction: column;
   transition: color 0.15s ease-in-out;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
 }
 
