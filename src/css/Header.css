@@ -8,7 +8,7 @@
   --header-height: 32px;
 }
 
-@media (-webkit-min-device-pixel-ratio: 1) {
+@media (-webkit-max-device-pixel-ratio: 1) {
   * {
     margin: 0;
     padding: 0;
@@ -20,14 +20,14 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) {
+@media (-webkit-min-device-pixel-ratio: 1.1) {
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-weight: 500;
-    --header-size: 80px;
-    --header-font: 0.95rem;
+    --header-size: 70px;
+    --header-font: 0.92rem;
     --header-height: 40px;
   }
 }
@@ -45,7 +45,7 @@
   display: flex;
   flex-direction: column;
   z-index: 10;
-  font-family: 'Jost', sans-serif;
+  font-family: "Jost", sans-serif;
   align-items: center;
 }
 
